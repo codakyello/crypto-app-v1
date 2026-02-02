@@ -64,11 +64,11 @@ export function TierCard({ tier, onSelect, isCompact = false, status = 'unlocked
         <div
             className={cn(
                 "relative group rounded-xl bg-[#0A0A0A] border transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full",
-                isActive ? colors.activeBorder : colors.border,
-                !isLocked && "hover:border-opacity-100", // Subtler glow
+                isActive ? colors.activeBorder : "border-white/10 hover:border-white/20", // Neutral border unless active
+                !isLocked && !isActive && "hover:border-opacity-100",
                 isCompact ? "p-4" : "p-5",
                 isLocked ? "opacity-60 grayscale hover:opacity-80 hover:grayscale-0" : "opacity-100",
-                isActive && "ring-1 ring-white/10"
+                isActive && "ring-1 ring-white/10 bg-white/[0.02]" // Subtle highlight for active
             )}
             onClick={() => onSelect?.(tier)}
         >

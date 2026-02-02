@@ -187,11 +187,11 @@ export default function DashboardPage() {
                   </div>
 
                   {/* Right: Actions */}
-                  <div className="p-6 md:w-48 flex flex-col justify-center gap-3 bg-[#0a0a0a]">
+                  <div className="p-6 md:w-56 flex flex-col justify-center gap-3 bg-[#0a0a0a]">
                     <Button className="w-full bg-white/10 hover:bg-white/20 text-white border border-white/10">
                       View Ticket
                     </Button>
-                    <Button variant="ghost" className="w-full h-10 text-xs font-bold text-gray-500 hover:text-white hover:bg-white/5 uppercase tracking-wider">
+                    <Button variant="ghost" className="w-full h-10 text-xs font-bold text-gray-500 hover:text-white hover:bg-white/5 uppercase tracking-wider whitespace-nowrap">
                       Add to Wallet
                     </Button>
                   </div>

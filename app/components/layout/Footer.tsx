@@ -55,9 +55,13 @@ export default function Footer() {
 
           {/* Copyright (Right - 3 cols) */}
           <div className="md:col-span-12 lg:col-span-3 lg:text-right">
-            <p className="text-xs text-gray-600">
-              &copy; 2025 Alpha Pride. All rights reserved.
-            </p>
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-gray-500 text-sm">
+                &copy; {new Date().getFullYear()} Alpha Pride. All rights reserved.
+              </p>
+              <div className="flex gap-6 text-sm text-gray-500">
+              </div>
+            </div>
           </div>
 
         </div>
