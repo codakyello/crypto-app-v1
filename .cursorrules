@@ -1,0 +1,21 @@
+# Project Rules & Design Standards
+
+> [!IMPORTANT]
+> **ALWAYS READ THESE RULES BEFORE STARTING ANY TASK**
+
+## 1. Fluid Typography & Spacing (MANDATORY)
+This project uses a "Write Once, Scale Everywhere" philosophy. NEVER use fixed pixel sizes for main structural elements.
+- **Headings**: Use `text-fluid-h1` for Hero titles and `text-fluid-h2` for Section titles.
+- **Body Text**: Use `text-fluid-body` for standard content.
+- **Micro-Copy**: Use responsive utilities (e.g., `text-sm md:text-base`) for metadata like locations, ratings, or button text.
+- **Layout**: Use `spacing-container` for horizontal padding and `spacing-section` for vertical padding.
+
+## 2. Component Standards
+- **Buttons**:
+  - "Ghost" buttons on dark backgrounds: `hover:bg-transparent` + `hover:text-primary`.
+  - Default sizing: Ensure strict compliance with user specific requests (e.g., 16px default, 14px secondary).
+- **Icons**: Always make icons responsive (e.g., `w-4 h-4 md:w-6 md:h-6`).
+
+## 3. "Don't Forget" Protocol
+- **Check Every View**: When editing a file, scan for `px` or fixed `text-` classes. If found on a main element, CONVERT IT.
+- **Mobile First**: Always assume the user checks on mobile first.
