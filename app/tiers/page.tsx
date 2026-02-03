@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { TierCard } from "@/components/tiers/TierCard";
 import { TierData } from "@/components/tiers/TierCard";
+import { TierBadge } from "@/components/tiers/TierBadge";
 import { tiers } from "@/app/data/tiers";
 import { Button } from "@/components/ui/button";
 import {
@@ -68,7 +69,7 @@ export default function TiersPage() {
         <div className="min-h-screen bg-[#050505]">
             {/* Hero Section ... */}
             {/* Hero Section ... */}
-            <section className="relative spacing-section spacing-container overflow-hidden">
+            <section className="relative spacing-section spacing-container overflow-hidden pt-32">
                 {/* ... */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
 
@@ -134,26 +135,32 @@ export default function TiersPage() {
                 </div>
             </section>
 
-            {/* Unlock Your Tier CTA */}
-            <section className="relative spacing-section spacing-container flex justify-center">
-                <div data-v-7713af15="" className="content max-w-4xl w-full bg-[#181310] p-6 md:p-12 rounded-3xl border border-white/5 text-center shadow-2xl">
-                    <h3 data-v-7713af15="" className="font-heading text-fluid-h2 uppercase font-bold text-white mb-6 tracking-tighter">
-                        Unlock Your Tier
-                    </h3>
-                    <p data-v-7713af15="" className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-                        Connect your wallet to validate your $ALPHA holdings and gain instant access to your tier level and exclusive community.
-                    </p>
-                    <a
+            {/* Unlock Your Tier CTA - Hide if user already has a tier */}
+            {!currentTier && (
+                <section className="relative spacing-section spacing-container flex justify-center">
+                    <div
                         data-v-7713af15=""
-                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary shadow hover:bg-primary/90 h-10 px-5 text-background font-bold text-base"
-                        type="button"
-                        href="https://guild.xyz/alphapride"
-                        target="_blank"
+                        className="content max-w-4xl w-full bg-[#181310] p-6 md:p-12 rounded-3xl border-[0.1px] text-center shadow-2xl"
+                        style={{ borderColor: "color-mix(in srgb, var(--primary) 50%, transparent)" }}
                     >
-                        Verify & Access
-                    </a>
-                </div>
-            </section>
+                        <h3 data-v-7713af15="" className="font-heading text-fluid-h2 uppercase font-bold text-white mb-6 tracking-tighter">
+                            Unlock Your Tier
+                        </h3>
+                        <p data-v-7713af15="" className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+                            Connect your wallet to validate your $ALPHA holdings and gain instant access to your tier level and exclusive community.
+                        </p>
+                        <a
+                            data-v-7713af15=""
+                            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary shadow hover:bg-primary/90 h-10 px-5 text-background font-bold text-base"
+                            type="button"
+                            href="https://guild.xyz/alphapride"
+                            target="_blank"
+                        >
+                            Verify & Access
+                        </a>
+                    </div>
+                </section>
+            )}
 
             {/* Tier Detail Modal */}
             <Dialog open={!!selectedTier} onOpenChange={() => setSelectedTier(null)}>
@@ -162,15 +169,7 @@ export default function TiersPage() {
                         <>
                             <DialogHeader className="space-y-4">
                                 <div className="flex items-center justify-between">
-                                    <div className={cn(
-                                        "px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest rounded-md border bg-opacity-10 w-fit",
-                                        selectedTier.color === 'entry' && "border-amber-500/30 text-amber-400 bg-amber-500/10",
-                                        selectedTier.color === 'influence' && "border-red-500/30 text-red-500 bg-red-500/10",
-                                        selectedTier.color === 'power' && "border-white/30 text-white bg-white/10",
-                                        selectedTier.color === 'legacy' && "border-amber-600/30 text-amber-600 bg-amber-600/10",
-                                    )}>
-                                        {selectedTier.name}
-                                    </div>
+                                    <TierBadge tier={selectedTier.color} name={selectedTier.name} />
                                 </div>
 
                                 <DialogTitle className="text-3xl font-bold text-white font-heading uppercase tracking-wide leading-none">

@@ -8,6 +8,8 @@ import Link from "next/link";
 import { cn } from "@/app/lib/utils";
 import { useState, useMemo } from "react";
 import { ExploreSidebar } from "./components/ExploreSidebar";
+import Image from "next/image";
+import { DARK_BLUR_DATA_URL } from "@/app/lib/image-utils";
 
 export default function ExplorePage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -97,18 +99,15 @@ export default function ExplorePage() {
                   <Card className="h-full overflow-hidden border-white/5 bg-white/5 hover:border-primary/50 transition-all hover:bg-white/10 group-hover:shadow-[0_0_20px_rgba(255,153,0,0.2)] flex flex-col">
                     {/* Image Area */}
                     <div className="h-56 bg-gray-800 relative overflow-hidden">
-                      <img
+                      <Image
                         src={service.image}
                         alt={service.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = 'none';
-                          (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
-                        }}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        placeholder="blur"
+                        blurDataURL={DARK_BLUR_DATA_URL}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
-                      <div className="absolute inset-0 flex items-center justify-center text-gray-600 bg-gray-900 hidden">
-                        [Image: {service.name}]
-                      </div>
 
                       <div className="absolute top-4 right-4 flex gap-2">
                         <div className="bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-primary border border-primary/20">

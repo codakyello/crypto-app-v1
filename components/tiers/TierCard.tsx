@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { TierBadge } from "./TierBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check, Lock } from "lucide-react";
@@ -23,28 +24,28 @@ const tierColors = {
         border: "border-amber-500/30 hover:border-amber-500",
         glow: "hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]",
         accent: "text-amber-400",
-        activeBorder: "border-amber-500 shadow-[0_0_30px_rgba(245,158,11,0.3)]",
+        activeBorder: "border-[0.1px] border-amber-500 shadow-[0_0_30px_rgba(245,158,11,0.3)]",
     },
     influence: {
         badge: "bg-gradient-to-r from-orange-600 to-amber-700 text-white",
         border: "border-orange-500/30 hover:border-orange-500",
         glow: "hover:shadow-[0_0_30px_rgba(249,115,22,0.15)]",
         accent: "text-orange-500",
-        activeBorder: "border-orange-500 shadow-[0_0_30px_rgba(249,115,22,0.3)]",
+        activeBorder: "border-[0.1px] border-orange-500 shadow-[0_0_30px_rgba(249,115,22,0.3)]",
     },
     power: {
         badge: "bg-gradient-to-r from-gray-400 to-gray-300 text-black",
         border: "border-gray-400/30 hover:border-gray-400",
         glow: "hover:shadow-[0_0_30px_rgba(156,163,175,0.15)]",
         accent: "text-gray-300",
-        activeBorder: "border-gray-300 shadow-[0_0_30px_rgba(255,255,255,0.2)]",
+        activeBorder: "border-[0.1px] border-gray-300 shadow-[0_0_30px_rgba(255,255,255,0.2)]",
     },
     legacy: {
         badge: "bg-gradient-to-r from-red-900 to-red-600 text-white",
         border: "border-red-600/30 hover:border-red-600",
         glow: "hover:shadow-[0_0_30px_rgba(220,38,38,0.2)]",
         accent: "text-red-600",
-        activeBorder: "border-red-600 shadow-[0_0_30px_rgba(220,38,38,0.4)]",
+        activeBorder: "border-[0.1px] border-red-600 shadow-[0_0_30px_rgba(220,38,38,0.4)]",
     },
 };
 
@@ -63,7 +64,7 @@ export function TierCard({ tier, onSelect, isCompact = false, status = 'unlocked
     return (
         <div
             className={cn(
-                "relative group rounded-xl bg-[#0A0A0A] border transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full",
+                "relative group rounded-xl bg-[#0A0A0A] border-[0.1px] transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full",
                 isActive ? colors.activeBorder : "border-white/10 hover:border-white/20", // Neutral border unless active
                 !isLocked && !isActive && "hover:border-opacity-100",
                 isCompact ? "p-4" : "p-5",
@@ -78,17 +79,7 @@ export function TierCard({ tier, onSelect, isCompact = false, status = 'unlocked
 
             {/* Badge Header */}
             <div className="mb-4 flex justify-between items-center">
-                <div
-                    className={cn(
-                        "px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest rounded-md border bg-opacity-10 backdrop-blur-md",
-                        tier.color === 'entry' && "border-amber-500/30 text-amber-400 bg-amber-500/10",
-                        tier.color === 'influence' && "border-red-500/30 text-red-500 bg-red-500/10",
-                        tier.color === 'power' && "border-white/30 text-white bg-white/10",
-                        tier.color === 'legacy' && "border-amber-600/30 text-amber-600 bg-amber-600/10",
-                    )}
-                >
-                    {tier.name}
-                </div>
+                <TierBadge tier={tier.color} name={tier.name} />
 
                 {isLocked && <Lock className="w-3 h-3 text-white/20" />}
                 {isActive && <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e]" />}
