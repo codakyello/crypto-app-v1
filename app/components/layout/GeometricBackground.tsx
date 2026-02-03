@@ -34,8 +34,13 @@ export default function GeometricBackground() {
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, [mouseX, mouseY]);
 
-    // Click ripple handler
+    // Click ripple handler - ignore clicks on interactive elements to avoid performance issues
     const handleClick = useCallback((e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        // Skip ripple for interactive elements to avoid blocking UI
+        if (target.closest('button, a, nav, [role="button"], input, select, textarea')) {
+            return;
+        }
         const newRipple: Ripple = {
             id: Date.now(),
             x: e.clientX,
