@@ -61,7 +61,7 @@ export function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-100 bg-black/95 backdrop-blur-3xl flex flex-col justify-center items-center animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-100 bg-[#050505] flex flex-col justify-center items-center animate-in fade-in duration-200">
           {/* Background Pattern */}
           <div className="absolute inset-0 z-0 opacity-20 pointer-events-none"
             style={{

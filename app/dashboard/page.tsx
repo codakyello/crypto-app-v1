@@ -37,8 +37,8 @@ export default function DashboardPage() {
           </div>
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-heading tracking-tight">Access Restricted</h1>
-        <p className="text-gray-400 max-w-md mx-auto mb-8 text-lg">
-          Connect your wallet to access the Alpha Member Dashboard your assets.
+        <p className="text-gray-400 mb-8 max-w-md mx-auto">
+          Connect your wallet to access the Alpha Member Dashboard and view your assets.
         </p>
         <div className="scale-110">
           <AlphaConnectButton />
